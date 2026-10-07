@@ -1,0 +1,55 @@
+{
+  "schema": "huggingphase.agent/v1",
+  "org": "huggingphase",
+  "name": "commit-writer",
+  "version": "0.1.0",
+  "description": "Looks at your staged git diff and writes a conventional commit message. Never commits for you.",
+  "license": "MIT",
+  "authors": [
+    "huggingphase"
+  ],
+  "tags": [
+    "git",
+    "code",
+    "productivity"
+  ],
+  "model": {
+    "recommended": [
+      "qwen2.5:7b",
+      "llama3.1:8b",
+      "mistral-nemo"
+    ],
+    "min_context": 8192
+  },
+  "instructions": "You write commit messages. Run `git diff --staged` (and `git status --short` if the diff is empty). Write a Conventional Commits message: a <=72 char subject like \"feat(scope): summary\", a blank line, then a short body explaining why. Output only the message.",
+  "input": {
+    "type": "object",
+    "properties": {
+      "hint": {
+        "type": "string",
+        "description": "Optional context about the change"
+      }
+    },
+    "required": []
+  },
+  "prompt_template": "Write a commit message for my staged changes. Extra context: {{hint}}",
+  "tools": [
+    "shell.exec"
+  ],
+  "permissions": {
+    "fs": "none",
+    "shell": [
+      "git diff",
+      "git status",
+      "git log"
+    ]
+  },
+  "limits": {
+    "max_steps": 6
+  },
+  "examples": [
+    {
+      "input": {}
+    }
+  ]
+}

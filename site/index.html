@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Huggingphase — open-source agents, run locally</title>
+  <meta name="description" content="The hub for open-source agents. Publish an agent once; anyone can pull it and run it on their own machine with a local model.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23ff6a2b'/%3E%3Cpath d='M9 9v14M23 9v14M9 16h14' stroke='white' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-in">
+      <a class="brand" href="#/">
+        <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><path d="M9 9v14M23 9v14M9 16h14" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>
+        <span>Huggingphase</span>
+      </a>
+      <nav class="nav">
+        <a href="#/" data-nav="home">Agents</a>
+        <a href="#/docs" data-nav="docs">Docs</a>
+        <a href="#/publish" data-nav="publish">Publish</a>
+        <a href="https://github.com/theInsanelyGreat/huggingphase" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <span class="daemon" id="daemon" title="Local runtime status">
+        <i></i><span>runtime offline</span>
+      </span>
+    </div>
+  </header>
+  <main id="app" class="wrap"></main>
+  <footer class="foot wrap">
+    <span>Huggingphase · open-source agents, run on your own hardware.</span>
+    <span><a href="api/v1/agents.json">API</a> · <a href="#/docs">Spec</a> · MIT</span>
+  </footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

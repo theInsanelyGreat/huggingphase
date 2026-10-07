@@ -1,0 +1,56 @@
+{
+  "schema": "huggingphase.agent/v1",
+  "org": "community",
+  "name": "hn-digest",
+  "version": "0.1.0",
+  "description": "Pulls the Hacker News front page and gives you a themed digest of what developers are talking about today.",
+  "license": "MIT",
+  "authors": [
+    "huggingphase community"
+  ],
+  "tags": [
+    "news",
+    "research",
+    "web"
+  ],
+  "model": {
+    "recommended": [
+      "qwen2.5:7b",
+      "llama3.1:8b",
+      "mistral-nemo"
+    ],
+    "min_context": 8192
+  },
+  "instructions": "Fetch https://news.ycombinator.com/ with net_fetch. Group the stories into 3–5 themes, list each story with its points if visible, and end with \"worth reading\" picks matching the interests given by the user.",
+  "input": {
+    "type": "object",
+    "properties": {
+      "interests": {
+        "type": "string",
+        "description": "Topics you care about",
+        "default": "AI, open source, developer tools"
+      }
+    },
+    "required": []
+  },
+  "prompt_template": "Make my HN digest. Interests: {{interests}}",
+  "tools": [
+    "net.fetch"
+  ],
+  "permissions": {
+    "fs": "none",
+    "net": [
+      "news.ycombinator.com"
+    ]
+  },
+  "limits": {
+    "max_steps": 4
+  },
+  "examples": [
+    {
+      "input": {
+        "interests": "local LLMs, databases"
+      }
+    }
+  ]
+}

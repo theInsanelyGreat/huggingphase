@@ -1,0 +1,16 @@
+{
+  "name": "huggingphase",
+  "version": "0.1.0",
+  "description": "The hub for open-source agents. Publish an agent once; anyone can run it on their own machine with a local model.",
+  "type": "module",
+  "bin": { "hp": "bin/hp.mjs", "huggingphase": "bin/hp.mjs" },
+  "files": ["bin", "src"],
+  "engines": { "node": ">=18.17" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check",
+    "dev": "node scripts/build.mjs && python3 -m http.server 8080 -d dist",
+    "test": "node --test test/*.test.mjs"
+  },
+  "license": "MIT"
+}
