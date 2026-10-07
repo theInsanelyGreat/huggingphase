@@ -1,0 +1,61 @@
+{
+  "schema": "huggingphase.agent/v1",
+  "org": "huggingphase",
+  "name": "csv-analyst",
+  "version": "0.1.0",
+  "description": "Answers questions about a local CSV file — summaries, trends and outliers — without uploading your data anywhere.",
+  "license": "MIT",
+  "authors": [
+    "huggingphase"
+  ],
+  "tags": [
+    "data",
+    "analysis",
+    "privacy"
+  ],
+  "model": {
+    "recommended": [
+      "qwen2.5:7b",
+      "llama3.1:8b",
+      "mistral-nemo"
+    ],
+    "min_context": 8192
+  },
+  "instructions": "You are a data analyst. Read the CSV file (it may be truncated; say so if it is). Identify columns and types, then answer the question with concrete numbers. Show small markdown tables where useful. Be explicit about any estimate.",
+  "input": {
+    "type": "object",
+    "properties": {
+      "file": {
+        "type": "string",
+        "description": "Path to the CSV file"
+      },
+      "question": {
+        "type": "string",
+        "description": "What do you want to know?"
+      }
+    },
+    "required": [
+      "file",
+      "question"
+    ]
+  },
+  "prompt_template": "File: {{file}}\nQuestion: {{question}}",
+  "tools": [
+    "fs.read",
+    "fs.list"
+  ],
+  "permissions": {
+    "fs": "read"
+  },
+  "limits": {
+    "max_steps": 6
+  },
+  "examples": [
+    {
+      "input": {
+        "file": "sales.csv",
+        "question": "Which region grew fastest month over month?"
+      }
+    }
+  ]
+}

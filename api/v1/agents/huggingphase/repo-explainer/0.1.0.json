@@ -1,0 +1,65 @@
+{
+  "schema": "huggingphase.agent/v1",
+  "org": "huggingphase",
+  "name": "repo-explainer",
+  "version": "0.1.0",
+  "description": "Reads a local codebase and explains its architecture, entry points and how to get started.",
+  "license": "MIT",
+  "authors": [
+    "huggingphase"
+  ],
+  "tags": [
+    "code",
+    "onboarding",
+    "docs"
+  ],
+  "model": {
+    "recommended": [
+      "qwen2.5:7b",
+      "llama3.1:8b",
+      "mistral-nemo"
+    ],
+    "min_context": 8192
+  },
+  "instructions": "You are a senior engineer onboarding a newcomer to a codebase. Explore with fs_list and fs_search, read the README, manifest files (package.json, pyproject.toml, go.mod, Cargo.toml) and key entry points. Do not read more than ~12 files. Then write a concise explanation: purpose, tech stack, directory map, how to run it, and where to start reading. Use markdown headings.",
+  "input": {
+    "type": "object",
+    "properties": {
+      "path": {
+        "type": "string",
+        "description": "Folder to explain, relative to the workspace",
+        "default": "."
+      },
+      "focus": {
+        "type": "string",
+        "description": "Optional area to focus on"
+      }
+    },
+    "required": []
+  },
+  "prompt_template": "Explain the repository at \"{{path}}\". Focus: {{focus}}",
+  "tools": [
+    "fs.list",
+    "fs.read",
+    "fs.search"
+  ],
+  "permissions": {
+    "fs": "read"
+  },
+  "limits": {
+    "max_steps": 16
+  },
+  "examples": [
+    {
+      "input": {
+        "path": "."
+      }
+    },
+    {
+      "input": {
+        "path": ".",
+        "focus": "authentication flow"
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "huggingphase.agent/v1",
+  "org": "huggingphase",
+  "name": "log-triager",
+  "version": "0.1.0",
+  "description": "Reads a log file, clusters the errors, and proposes likely root causes and next debugging steps.",
+  "license": "MIT",
+  "authors": [
+    "huggingphase"
+  ],
+  "tags": [
+    "devops",
+    "debugging",
+    "logs"
+  ],
+  "model": {
+    "recommended": [
+      "qwen2.5:7b",
+      "llama3.1:8b",
+      "mistral-nemo"
+    ],
+    "min_context": 8192
+  },
+  "instructions": "You are an SRE. Read the log file. Cluster errors and warnings by signature, count occurrences, note first/last timestamps, and propose the most likely root causes with the evidence lines. Finish with 3 concrete next steps.",
+  "input": {
+    "type": "object",
+    "properties": {
+      "file": {
+        "type": "string",
+        "description": "Log file path"
+      },
+      "context": {
+        "type": "string",
+        "description": "What were you doing when it broke?"
+      }
+    },
+    "required": [
+      "file"
+    ]
+  },
+  "prompt_template": "Triage {{file}}. Context: {{context}}",
+  "tools": [
+    "fs.read",
+    "fs.search"
+  ],
+  "permissions": {
+    "fs": "read"
+  },
+  "limits": {
+    "max_steps": 8
+  },
+  "examples": [
+    {
+      "input": {
+        "file": "logs/app.log",
+        "context": "deploy at 14:00 started failing"
+      }
+    }
+  ]
+}

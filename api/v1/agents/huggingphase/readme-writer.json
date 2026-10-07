@@ -1,0 +1,56 @@
+{
+  "schema": "huggingphase.agent/v1",
+  "org": "huggingphase",
+  "name": "readme-writer",
+  "version": "0.1.0",
+  "description": "Explores a project and drafts a complete README.md: overview, install, usage, configuration and license.",
+  "license": "MIT",
+  "authors": [
+    "huggingphase"
+  ],
+  "tags": [
+    "docs",
+    "code",
+    "writing"
+  ],
+  "model": {
+    "recommended": [
+      "qwen2.5:7b",
+      "llama3.1:8b",
+      "mistral-nemo"
+    ],
+    "min_context": 8192
+  },
+  "instructions": "Explore the project (fs_list, read manifests and entry points). Draft a README.md with: title + one-line pitch, features, install, quick start with real commands from the project, configuration, project structure, license. Ask for approval by calling fs_write to README.md only if the user asked to write it; otherwise reply with the markdown.",
+  "input": {
+    "type": "object",
+    "properties": {
+      "write": {
+        "type": "boolean",
+        "description": "Write README.md to disk",
+        "default": false
+      }
+    },
+    "required": []
+  },
+  "prompt_template": "Draft a README for this project. Write to disk: {{write}}",
+  "tools": [
+    "fs.list",
+    "fs.read",
+    "fs.search",
+    "fs.write"
+  ],
+  "permissions": {
+    "fs": "read-write"
+  },
+  "limits": {
+    "max_steps": 16
+  },
+  "examples": [
+    {
+      "input": {
+        "write": false
+      }
+    }
+  ]
+}

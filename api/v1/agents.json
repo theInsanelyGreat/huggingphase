@@ -1,0 +1,269 @@
+{
+  "schema": "huggingphase.index/v1",
+  "generated_at": "2026-10-07T21:10:24.610Z",
+  "count": 8,
+  "agents": [
+    {
+      "id": "community/hn-digest",
+      "org": "community",
+      "name": "hn-digest",
+      "version": "0.1.0",
+      "description": "Pulls the Hacker News front page and gives you a themed digest of what developers are talking about today.",
+      "license": "MIT",
+      "tags": [
+        "news",
+        "research",
+        "web"
+      ],
+      "tools": [
+        "net.fetch"
+      ],
+      "permissions": {
+        "fs": "none",
+        "net": [
+          "news.ycombinator.com"
+        ],
+        "shell": []
+      },
+      "model": {
+        "recommended": [
+          "qwen2.5:7b",
+          "llama3.1:8b",
+          "mistral-nemo"
+        ],
+        "min_context": 8192
+      },
+      "updated": "2026-10-07T20:47:23.595Z"
+    },
+    {
+      "id": "huggingphase/commit-writer",
+      "org": "huggingphase",
+      "name": "commit-writer",
+      "version": "0.1.0",
+      "description": "Looks at your staged git diff and writes a conventional commit message. Never commits for you.",
+      "license": "MIT",
+      "tags": [
+        "git",
+        "code",
+        "productivity"
+      ],
+      "tools": [
+        "shell.exec"
+      ],
+      "permissions": {
+        "fs": "none",
+        "net": [],
+        "shell": [
+          "git diff",
+          "git status",
+          "git log"
+        ]
+      },
+      "model": {
+        "recommended": [
+          "qwen2.5:7b",
+          "llama3.1:8b",
+          "mistral-nemo"
+        ],
+        "min_context": 8192
+      },
+      "updated": "2026-10-07T20:47:23.594Z"
+    },
+    {
+      "id": "huggingphase/csv-analyst",
+      "org": "huggingphase",
+      "name": "csv-analyst",
+      "version": "0.1.0",
+      "description": "Answers questions about a local CSV file — summaries, trends and outliers — without uploading your data anywhere.",
+      "license": "MIT",
+      "tags": [
+        "data",
+        "analysis",
+        "privacy"
+      ],
+      "tools": [
+        "fs.read",
+        "fs.list"
+      ],
+      "permissions": {
+        "fs": "read",
+        "net": [],
+        "shell": []
+      },
+      "model": {
+        "recommended": [
+          "qwen2.5:7b",
+          "llama3.1:8b",
+          "mistral-nemo"
+        ],
+        "min_context": 8192
+      },
+      "updated": "2026-10-07T20:47:23.594Z"
+    },
+    {
+      "id": "huggingphase/log-triager",
+      "org": "huggingphase",
+      "name": "log-triager",
+      "version": "0.1.0",
+      "description": "Reads a log file, clusters the errors, and proposes likely root causes and next debugging steps.",
+      "license": "MIT",
+      "tags": [
+        "devops",
+        "debugging",
+        "logs"
+      ],
+      "tools": [
+        "fs.read",
+        "fs.search"
+      ],
+      "permissions": {
+        "fs": "read",
+        "net": [],
+        "shell": []
+      },
+      "model": {
+        "recommended": [
+          "qwen2.5:7b",
+          "llama3.1:8b",
+          "mistral-nemo"
+        ],
+        "min_context": 8192
+      },
+      "updated": "2026-10-07T20:47:23.594Z"
+    },
+    {
+      "id": "huggingphase/readme-writer",
+      "org": "huggingphase",
+      "name": "readme-writer",
+      "version": "0.1.0",
+      "description": "Explores a project and drafts a complete README.md: overview, install, usage, configuration and license.",
+      "license": "MIT",
+      "tags": [
+        "docs",
+        "code",
+        "writing"
+      ],
+      "tools": [
+        "fs.list",
+        "fs.read",
+        "fs.search",
+        "fs.write"
+      ],
+      "permissions": {
+        "fs": "read-write",
+        "net": [],
+        "shell": []
+      },
+      "model": {
+        "recommended": [
+          "qwen2.5:7b",
+          "llama3.1:8b",
+          "mistral-nemo"
+        ],
+        "min_context": 8192
+      },
+      "updated": "2026-10-07T20:47:23.595Z"
+    },
+    {
+      "id": "huggingphase/repo-explainer",
+      "org": "huggingphase",
+      "name": "repo-explainer",
+      "version": "0.1.0",
+      "description": "Reads a local codebase and explains its architecture, entry points and how to get started.",
+      "license": "MIT",
+      "tags": [
+        "code",
+        "onboarding",
+        "docs"
+      ],
+      "tools": [
+        "fs.list",
+        "fs.read",
+        "fs.search"
+      ],
+      "permissions": {
+        "fs": "read",
+        "net": [],
+        "shell": []
+      },
+      "model": {
+        "recommended": [
+          "qwen2.5:7b",
+          "llama3.1:8b",
+          "mistral-nemo"
+        ],
+        "min_context": 8192
+      },
+      "updated": "2026-10-07T20:47:23.593Z"
+    },
+    {
+      "id": "huggingphase/todo-harvester",
+      "org": "huggingphase",
+      "name": "todo-harvester",
+      "version": "0.1.0",
+      "description": "Scans a project for TODO, FIXME and HACK comments and turns them into a prioritized task list.",
+      "license": "MIT",
+      "tags": [
+        "code",
+        "productivity",
+        "planning"
+      ],
+      "tools": [
+        "fs.search",
+        "fs.read",
+        "fs.write"
+      ],
+      "permissions": {
+        "fs": "read-write",
+        "net": [],
+        "shell": []
+      },
+      "model": {
+        "recommended": [
+          "qwen2.5:7b",
+          "llama3.1:8b",
+          "mistral-nemo"
+        ],
+        "min_context": 8192
+      },
+      "updated": "2026-10-07T20:47:23.594Z"
+    },
+    {
+      "id": "huggingphase/web-summarizer",
+      "org": "huggingphase",
+      "name": "web-summarizer",
+      "version": "0.1.0",
+      "description": "Fetches a public web page or Wikipedia article and writes a sourced, bullet-point summary.",
+      "license": "MIT",
+      "tags": [
+        "web",
+        "research",
+        "summarization"
+      ],
+      "tools": [
+        "net.fetch"
+      ],
+      "permissions": {
+        "fs": "none",
+        "net": [
+          "*.wikipedia.org",
+          "news.ycombinator.com",
+          "github.com",
+          "raw.githubusercontent.com",
+          "*.github.io",
+          "arxiv.org"
+        ],
+        "shell": []
+      },
+      "model": {
+        "recommended": [
+          "qwen2.5:7b",
+          "llama3.1:8b",
+          "mistral-nemo"
+        ],
+        "min_context": 8192
+      },
+      "updated": "2026-10-07T20:47:23.594Z"
+    }
+  ]
+}

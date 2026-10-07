@@ -1,0 +1,62 @@
+{
+  "schema": "huggingphase.agent/v1",
+  "org": "huggingphase",
+  "name": "web-summarizer",
+  "version": "0.1.0",
+  "description": "Fetches a public web page or Wikipedia article and writes a sourced, bullet-point summary.",
+  "license": "MIT",
+  "authors": [
+    "huggingphase"
+  ],
+  "tags": [
+    "web",
+    "research",
+    "summarization"
+  ],
+  "model": {
+    "recommended": [
+      "qwen2.5:7b",
+      "llama3.1:8b",
+      "mistral-nemo"
+    ],
+    "min_context": 8192
+  },
+  "instructions": "Fetch the given URL with net_fetch. Summarize it in 5–8 bullets, then list key facts with numbers, then a one-line TL;DR. If the fetch fails, say why. Never invent content not on the page.",
+  "input": {
+    "type": "object",
+    "properties": {
+      "url": {
+        "type": "string",
+        "description": "Page to summarize"
+      }
+    },
+    "required": [
+      "url"
+    ]
+  },
+  "prompt_template": "Summarize {{url}}",
+  "tools": [
+    "net.fetch"
+  ],
+  "permissions": {
+    "fs": "none",
+    "net": [
+      "*.wikipedia.org",
+      "news.ycombinator.com",
+      "github.com",
+      "raw.githubusercontent.com",
+      "*.github.io",
+      "arxiv.org"
+    ]
+  },
+  "limits": {
+    "max_steps": 4
+  },
+  "examples": [
+    {
+      "input": {
+        "url": "https://en.wikipedia.org/wiki/Open-source_software"
+      }
+    }
+  ]
+}

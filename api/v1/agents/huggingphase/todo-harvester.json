@@ -1,0 +1,57 @@
+{
+  "schema": "huggingphase.agent/v1",
+  "org": "huggingphase",
+  "name": "todo-harvester",
+  "version": "0.1.0",
+  "description": "Scans a project for TODO, FIXME and HACK comments and turns them into a prioritized task list.",
+  "license": "MIT",
+  "authors": [
+    "huggingphase"
+  ],
+  "tags": [
+    "code",
+    "productivity",
+    "planning"
+  ],
+  "model": {
+    "recommended": [
+      "qwen2.5:7b",
+      "llama3.1:8b",
+      "mistral-nemo"
+    ],
+    "min_context": 8192
+  },
+  "instructions": "Use fs_search for \"TODO\", \"FIXME\" and \"HACK\". Group findings by area, estimate priority (P0–P2) from the wording and location, and output a markdown checklist with file:line references. Optionally write it to the requested output file.",
+  "input": {
+    "type": "object",
+    "properties": {
+      "output": {
+        "type": "string",
+        "description": "Optional file to write the list to, e.g. TODO.md"
+      }
+    },
+    "required": []
+  },
+  "prompt_template": "Harvest TODOs in this project. Output file (blank = just reply): {{output}}",
+  "tools": [
+    "fs.search",
+    "fs.read",
+    "fs.write"
+  ],
+  "permissions": {
+    "fs": "read-write"
+  },
+  "limits": {
+    "max_steps": 10
+  },
+  "examples": [
+    {
+      "input": {}
+    },
+    {
+      "input": {
+        "output": "TODO.md"
+      }
+    }
+  ]
+}
