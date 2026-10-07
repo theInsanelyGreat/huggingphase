@@ -217,7 +217,8 @@ function mountRunner(el, m, ex) {
       el.innerHTML = `<h3>Run on your machine</h3>
         <p style="font-size:13.5px;color:var(--fg2);margin:0 0 10px">Start the local runtime. This page then sends runs to it, and the agent executes on your computer.</p>
         ${term(`${NPX} serve`)}
-        <div class="note">Needs Node 18+ and a local model server (Ollama on <code>:11434</code> by default). Looking for it at <code>${esc(DAEMON)}</code>. <a href="#" id="chg">change</a></div>`;
+        <div class="note">Needs Node 18+ and a local model server (Ollama on <code>:11434</code> by default). Looking for it at <code>${esc(DAEMON)}</code>. <a href="#" id="chg">change</a></div>
+        <div class="note">If your browser asks to <b>access devices on your local network</b>, click Allow. That permission lets this page reach the runtime on your machine.</div>`;
       el.querySelector('#chg').onclick = e => {
         e.preventDefault();
         const v = prompt('Local runtime URL', DAEMON);
